@@ -6,11 +6,14 @@ config:
 add_to_cart:
     - name: "Add to Cart (MultiStep Transaction)"
     - domain: "{{ .Env.production_frontend_ip }}"
+    - environment: "Production"
 
 homepage:
     - name: "Homepage (Single Page)"
     - domain: "{{ .Env.production_frontend_ip }}"
+    - environment: "Production"
 
 carts-api:
     - name: "Carts API Check"
     - domain: "{{ .Env.production_carts_ip }}"
+    - environment: "Production"

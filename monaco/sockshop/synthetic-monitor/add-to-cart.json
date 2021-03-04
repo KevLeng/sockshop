@@ -132,7 +132,10 @@
         "thresholds": []
       }
     },
-    "tags": [],
+    "tags": [{
+        "context": "CONTEXTLESS",
+        "key": "{{ .environment }}"
+      }],
     "managementZones": [],
     "automaticallyAssignedApps": [],
     "manuallyAssignedApps": [],

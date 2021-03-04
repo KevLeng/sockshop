@@ -44,7 +44,7 @@
         "dojo": false,
         "extJS": false,
         "icefaces": false,
-        "jQuery": false,
+        "jQuery": true,
         "mooTools": false,
         "prototype": false,
         "activeXObject": false
