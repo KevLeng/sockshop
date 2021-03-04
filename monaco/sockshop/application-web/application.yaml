@@ -1,8 +1,9 @@
 config:
     - dev_application : "application.json"
+    - production_application : "application.json"
 
 dev_application:
     - name: "Sockshop (Dev)"
 
-dev_application:
+production_application:
     - name: "Sockshop (Production)"

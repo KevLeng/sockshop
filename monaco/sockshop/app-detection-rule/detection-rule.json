@@ -1,0 +1,8 @@
+{
+    "applicationIdentifier": "{{.id}}",
+    "filterConfig": {
+      "pattern": "52.143.247.174",
+      "applicationMatchType": "MATCHES",
+      "applicationMatchTarget": "DOMAIN"
+    }
+  }
