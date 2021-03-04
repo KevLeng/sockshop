@@ -1,0 +1,114 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: shipping
+    product: sockshop
+    release: stable
+    stage: dev
+    tier: business
+    version: "1.1"
+  name: shipping
+  namespace: dev
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  revisionHistoryLimit: 2147483647
+  selector:
+    matchLabels:
+      app: shipping
+      product: sockshop
+      release: stable
+      stage: dev
+      tier: business
+      version: "1.1"
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        dynatrace/instrument: "false"
+        pipeline.build: 1.1.0.7904
+        pipeline.project: sockshop
+        pipeline.stage: dev
+        sidecar.istio.io/inject: "false"
+        support.channel: '#support-sockshop-services'
+        support.contact: john.doe@sockshop.com
+      creationTimestamp: null
+      labels:
+        app: shipping
+        product: sockshop
+        release: stable
+        stage: dev
+        tier: business
+        version: "1.1"
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC
+            -Djava.security.egd=file:/dev/urandom
+        image: dynatracesockshop/shipping:0.5.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 240
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 15
+        name: shipping
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 240
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 15
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: tmp-volume
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  labels:
+    app: shipping
+  namespace: dev
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: shipping

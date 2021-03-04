@@ -1,0 +1,197 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: carts-db-mongodata
+  namespace: dev
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: carts-db
+  namespace: dev
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: carts-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        dynatrace/instrument: "false"
+        pipeline.build: 1.3.0.5464
+        pipeline.project: sockshop
+        pipeline.stage: dev
+        sidecar.istio.io/inject: "false"
+        support.channel: '#support-sockshop-data'
+        support.contact: mary.poppins@sockshop.com
+      creationTimestamp: null
+      labels:
+        name: carts-db
+        product: sockshop
+        stage: dev
+        tier: data
+        version: "1.3"
+    spec:
+      containers:
+      - env:
+        - name: MONGODB_ADMIN_PASSWORD
+          value: password
+        - name: MONGODB_USER
+          value: user
+        - name: MONGODB_PASSWORD
+          value: password
+        - name: MONGODB_DATABASE
+          value: carts-db
+        image: mongo
+        imagePullPolicy: Always
+        name: carts-db
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /data/db
+          name: carts-db-mongodata
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: carts-db-mongodata
+        persistentVolumeClaim:
+          claimName: carts-db-mongodata
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: carts-db
+  namespace: dev
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    targetPort: 27017
+  selector:
+    name: carts-db
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: carts-db-mongodata
+  namespace: production
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    name: carts-db
+    product: sockshop
+    release: stable
+    stage: prod
+    tier: data
+    version: "1.2"
+  name: carts-db
+  namespace: production
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  revisionHistoryLimit: 2147483647
+  selector:
+    matchLabels:
+      name: carts-db
+      product: sockshop
+      release: stable
+      stage: prod
+      tier: data
+      version: "1.2"
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        dynatrace/instrument: "false"
+        pipeline.build: 1.2.0.2644
+        pipeline.project: sockshop
+        pipeline.stage: prod-stable
+        sidecar.istio.io/inject: "false"
+        support.channel: '#support-sockshop-data'
+        support.contact: mary.poppins@sockshop.com
+      creationTimestamp: null
+      labels:
+        name: carts-db
+        product: sockshop
+        release: stable
+        stage: prod
+        tier: data
+        version: "1.2"
+    spec:
+      containers:
+      - env:
+        - name: MONGODB_ADMIN_PASSWORD
+          value: password
+        - name: MONGODB_USER
+          value: user
+        - name: MONGODB_PASSWORD
+          value: password
+        - name: MONGODB_DATABASE
+          value: carts-db
+        image: mongo
+        imagePullPolicy: Always
+        name: carts-db
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /data/db
+          name: carts-db-mongodata
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: carts-db-mongodata
+        persistentVolumeClaim:
+          claimName: carts-db-mongodata
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: carts-db
+  namespace: production
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    targetPort: 27017
+  selector:
+    name: carts-db
