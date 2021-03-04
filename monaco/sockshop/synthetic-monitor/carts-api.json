@@ -1,0 +1,64 @@
+{
+    "name": "{{ .name }}",
+    "frequencyMin": 1,
+    "enabled": true,
+    "type": "HTTP",
+    "createdFrom": "GUI",
+    "script": {
+      "version": "1.0",
+      "requests": [
+        {
+          "description": "Cart API",
+          "url": "http://{{ .domain }}/",
+          "method": "GET",
+          "validation": {
+            "rules": [
+              {
+                "value": ">=400",
+                "passIfFound": false,
+                "type": "httpStatusesList"
+              }
+            ],
+            "rulesChaining": "or"
+          },
+          "configuration": {
+            "acceptAnyCertificate": true,
+            "followRedirects": true
+          }
+        }
+      ]
+    },
+    "locations": [
+      "GEOLOCATION-8888B6EC387C46E6"
+    ],
+    "anomalyDetection": {
+      "outageHandling": {
+        "globalOutage": true,
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": 1,
+          "consecutiveRuns": 3
+        }
+      },
+      "loadingTimeThresholds": {
+        "enabled": false,
+        "thresholds": [
+          {
+            "type": "TOTAL",
+            "valueMs": 0
+          }
+        ]
+      }
+    },
+    "tags": [],
+    "managementZones": [],
+    "automaticallyAssignedApps": [],
+    "manuallyAssignedApps": [],
+    "requests": [
+      {
+        "entityId": "HTTP_CHECK_STEP-84BB9C5EB9DEDF0D",
+        "name": "Cart API",
+        "sequenceNumber": 1
+      }
+    ]
+  }

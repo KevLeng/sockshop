@@ -1,7 +1,7 @@
 config:
     - add_to_cart : "add-to-cart.json"
     - homepage : "homepage.json"
-
+    - carts-api : "carts-api.json"
 
 add_to_cart:
     - name: "Add to Cart (MultiStep Transaction)"
@@ -10,3 +10,7 @@ add_to_cart:
 homepage:
     - name: "Homepage"
     - domain: "{{ .Env.production_frontend_ip }}"
+
+carts-api:
+    - name: "Carts API Check"
+    - domain: "{{ .Env.production_carts_ip }}"
