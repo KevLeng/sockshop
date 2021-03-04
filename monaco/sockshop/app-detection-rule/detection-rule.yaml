@@ -5,7 +5,9 @@ config:
 dev_detection_rule:
     - name: "/sockshop/application-web/dev_application.name"
     - id: "/sockshop/application-web/dev_application.id"
+    - pattern: "{{ .Env.dev_frontend_ip }}"
 
 production_detection_rule:
     - name: "/sockshop/application-web/production_application.name"
     - id: "/sockshop/application-web/production_application.id"
+    - pattern: "{{ .Env.production_frontend_ip }}"

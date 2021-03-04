@@ -1,7 +1,7 @@
 {
     "applicationIdentifier": "{{.id}}",
     "filterConfig": {
-      "pattern": "52.143.247.174",
+      "pattern": "{{.pattern}}",
       "applicationMatchType": "MATCHES",
       "applicationMatchTarget": "DOMAIN"
     }
