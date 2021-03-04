@@ -1,0 +1,55 @@
+{
+    "name": "{{ .name }}",
+    "frequencyMin": 15,
+    "enabled": true,
+    "type": "BROWSER",
+    "createdFrom": "GUI",
+    "script": {
+      "type": "availability",
+      "version": "1.0",
+      "configuration": {
+        "device": {
+          "deviceName": "Desktop",
+          "orientation": "landscape"
+        },
+        "disableWebSecurity": false
+      },
+      "events": [
+        {
+          "type": "navigate",
+          "description": "Loading of Homepage",
+          "url": "http://{{ .domain }}:8080/",
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        }
+      ]
+    },
+    "locations": [
+      "GEOLOCATION-3E92FA6A6564DB91"
+    ],
+    "anomalyDetection": {
+      "outageHandling": {
+        "globalOutage": true,
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": 1,
+          "consecutiveRuns": 3
+        },
+        "retryOnError": true
+      },
+      "loadingTimeThresholds": {
+        "enabled": false,
+        "thresholds": []
+      }
+    },
+    "tags": [],
+    "managementZones": [],
+    "automaticallyAssignedApps": [],
+    "manuallyAssignedApps": [],
+    "keyPerformanceMetrics": {
+      "loadActionKpm": "VISUALLY_COMPLETE",
+      "xhrActionKpm": "VISUALLY_COMPLETE"
+    },
+    "events": []
+  }

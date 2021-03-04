@@ -1,6 +1,12 @@
 config:
     - add_to_cart : "add-to-cart.json"
+    - homepage : "homepage.json"
+
 
 add_to_cart:
     - name: "Add to Cart (MultiStep Transaction)"
+    - domain: "{{ .Env.production_frontend_ip }}"
+
+homepage:
+    - name: "Homepage"
     - domain: "{{ .Env.production_frontend_ip }}"
