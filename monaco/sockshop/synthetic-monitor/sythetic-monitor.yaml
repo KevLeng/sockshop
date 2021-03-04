@@ -1,7 +1,6 @@
 config:
     - add_to_cart : "add-to-cart.json"
-    - production_application : "application.json"
 
 add_to_cart:
-    - name: "Add to Cart Transaction"
+    - name: "Add to Cart (MultiStep Transaction)"
     - domain: "{{ .Env.production_frontend_ip }}"
