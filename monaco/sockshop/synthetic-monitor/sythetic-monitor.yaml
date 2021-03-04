@@ -8,7 +8,7 @@ add_to_cart:
     - domain: "{{ .Env.production_frontend_ip }}"
 
 homepage:
-    - name: "Homepage"
+    - name: "Homepage (Single Page)"
     - domain: "{{ .Env.production_frontend_ip }}"
 
 carts-api:
