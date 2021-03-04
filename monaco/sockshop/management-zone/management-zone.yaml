@@ -1,0 +1,13 @@
+config:
+    - production_mz : "management-zone.json"
+    - dev_mz : "management-zone.json"
+
+production_mz:
+    - name: "Production"
+    - tag: "prod"
+    - env: "Production"
+
+dev_mz:
+    - name: "Dev"
+    - tag: "dev"
+    - env: "Dev"
