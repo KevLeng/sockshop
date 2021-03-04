@@ -1,0 +1,7 @@
+config:
+    - add_to_cart : "add-to-cart.json"
+    - production_application : "application.json"
+
+add_to_cart:
+    - name: "Add to Cart Transaction"
+    - domain: "{{ .Env.production_frontend_ip }}"
