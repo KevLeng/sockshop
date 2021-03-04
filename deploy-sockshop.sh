@@ -17,3 +17,5 @@ kubectl apply -f manifests/backend-services/orders-db/
 kubectl apply -f manifests/sockshop-app/dev/
 kubectl apply -f manifests/sockshop-app/production/
 
+kubectl -n dev create rolebinding default-view --clusterrole=view --serviceaccount=dev:default
+kubectl -n production create rolebinding default-view --clusterrole=view --serviceaccount=production:default
