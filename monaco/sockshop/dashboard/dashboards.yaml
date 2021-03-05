@@ -1,0 +1,5 @@
+config:
+    - highlevel_overview : "highlevel-dashboard.json"
+
+highlevel_overview:
+    - name: "Environment Overview Dashboard"

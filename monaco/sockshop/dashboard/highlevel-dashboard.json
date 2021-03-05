@@ -1,0 +1,165 @@
+{
+    "dashboardMetadata": {
+        "name": "{{ .name }}",
+        "shared": true,
+        "owner": "kevin.leng@dynatrace.com",
+        "sharingDetails": {
+            "linkShared": true,
+            "published": false
+        }
+    },
+    "tiles": [{
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 608,
+            "width": 152,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Hosts](#newhosts)"
+    }, {
+        "name": "Host health",
+        "tileType": "HOSTS",
+        "configured": true,
+        "bounds": {
+            "top": 38,
+            "left": 608,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+    }, {
+        "name": "Application health",
+        "tileType": "APPLICATIONS",
+        "configured": true,
+        "bounds": {
+            "top": 38,
+            "left": 0,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+    }, {
+        "name": "Service health",
+        "tileType": "SERVICES",
+        "configured": true,
+        "bounds": {
+            "top": 38,
+            "left": 304,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+    }, {
+        "name": "Database health",
+        "tileType": "DATABASES_OVERVIEW",
+        "configured": true,
+        "bounds": {
+            "top": 38,
+            "left": 456,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+    }, {
+        "name": "Synthetic monitor health",
+        "tileType": "SYNTHETIC_TESTS",
+        "configured": true,
+        "bounds": {
+            "top": 38,
+            "left": 152,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 456,
+            "width": 152,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Databases](#newdatabases)"
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 304,
+            "width": 152,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Services](#newservices)"
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 152,
+            "width": 152,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Synthetics](#monitors)"
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 0,
+            "width": 152,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Applications](#uemapplications)"
+    }, {
+        "name": "Top web applications",
+        "tileType": "APPLICATIONS_MOST_ACTIVE",
+        "configured": true,
+        "bounds": {
+            "top": 190,
+            "left": 0,
+            "width": 304,
+            "height": 304
+        },
+        "tileFilter": {}
+    }, {
+        "name": "Problems",
+        "tileType": "OPEN_PROBLEMS",
+        "configured": true,
+        "bounds": {
+            "top": 190,
+            "left": 608,
+            "width": 152,
+            "height": 152
+        },
+        "tileFilter": {}
+    }, {
+        "name": "Smartscape",
+        "tileType": "PURE_MODEL",
+        "configured": true,
+        "bounds": {
+            "top": 190,
+            "left": 304,
+            "width": 304,
+            "height": 152
+        },
+        "tileFilter": {}
+    }]
+}
