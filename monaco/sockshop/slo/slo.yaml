@@ -1,0 +1,5 @@
+config:
+    - carts_slo: "carts-slo.json"
+
+carts_slo:
+    - name: "Carts Success Rate SLO"

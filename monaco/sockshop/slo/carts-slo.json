@@ -1,0 +1,20 @@
+{
+    "enabled": true,
+    "name": "{{ .name }}",
+    "description": "Service Successes Server Rate > 99.89%",
+    "evaluatedPercentage": 100,
+    "errorBudget": 0.10999999999999943,
+    "status": "SUCCESS",
+    "error": "NONE",
+    "useRateMetric": true,
+    "metricRate": "builtin:service.successes.server.rate",
+    "metricNumerator": "",
+    "numeratorValue": 0,
+    "metricDenominator": "",
+    "denominatorValue": 0,
+    "target": 99.89,
+    "warning": 99.9,
+    "evaluationType": "AGGREGATE",
+    "timeframe": "-1w",
+    "filter": "type(\"SERVICE\"),tag(\"[Kubernetes]stage:prod\"),entityName.equals(\"ItemsController\")"
+  }
