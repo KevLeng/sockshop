@@ -1,0 +1,8 @@
+config:
+    - azure : "azure.json"
+
+azure:
+    - name: "Dynatrace Azure Monitor"
+    - appId: "{{ .Env.AZURE_CLIENT_ID }}"
+    - directoryId: "{{ .AZURE_TENANT_ID }}"
+    - key: "{{ .AZURE_KEY }}"
