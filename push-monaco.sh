@@ -31,7 +31,7 @@ if [[ "$AZURE_KEY" == "none" ]]; then
     exit 1
 fi
 
-
+echo "Gathering environment details..."
 export dev_frontend_ip=$(kubectl describe svc front-end -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 export dev_carts_ip=$(kubectl describe svc carts -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 
