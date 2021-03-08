@@ -1,0 +1,5 @@
+config:
+    - Kubernetes_DetectedName_Namespace : "Kubernetes_DetectedName_Namespace.json"
+
+Kubernetes_DetectedName_Namespace:
+    - name: "Kubernetes DetectedName.Namespace"
