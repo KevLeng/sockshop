@@ -1,0 +1,5 @@
+config:
+    - Kubernetes_Namespace_Container : "Kubernetes_Namespace_Container.json"
+
+Kubernetes_Namespace_Container:
+    - name: "Kubernetes Namespace.Container"
