@@ -7,6 +7,8 @@ AZURE_CLIENT_ID=${AZURE_CLIENT_ID:-none}
 AZURE_TENANT_ID=${AZURE_TENANT_ID:-none}
 AZURE_KEY=${AZURE_KEY:-none}
 
+SKIP_AZURE=${SKIP_AZURE:-true}
+
 
 
 
@@ -18,17 +20,19 @@ if [[ "$DT_API_TOKEN" == "none" ]]; then
     echo "You have to set DT_API_TOKEN to a Token that has 'read configuration', 'write configuration', 'Create and read synthetic monitors, locations, and nodes', 'Access problem and event feed, metrics, and topology'"
     exit 1
 fi
-if [[ "$AZURE_CLIENT_ID" == "none" ]]; then
-    echo "You have to set AZURE_CLIENT_ID to the Application (client) ID for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
-    exit 1
-fi
-if [[ "$AZURE_TENANT_ID" == "none" ]]; then
-    echo "You have to set AZURE_TENANT_ID to the Directory (tenant) ID for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
-    exit 1
-fi
-if [[ "$AZURE_KEY" == "none" ]]; then
-    echo "You have to set AZURE_KEY to the client secret value for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
-    exit 1
+if [[ "$SKIP_AZURE" == "false" ]]; then
+    if [[ "$AZURE_CLIENT_ID" == "none" ]]; then
+        echo "You have to set AZURE_CLIENT_ID to the Application (client) ID for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
+        exit 1
+    fi
+    if [[ "$AZURE_TENANT_ID" == "none" ]]; then
+        echo "You have to set AZURE_TENANT_ID to the Directory (tenant) ID for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
+        exit 1
+    fi
+    if [[ "$AZURE_KEY" == "none" ]]; then
+        echo "You have to set AZURE_KEY to the client secret value for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
+        exit 1
+    fi
 fi
 
 echo "Gathering environment details..."

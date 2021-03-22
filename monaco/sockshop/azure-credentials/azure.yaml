@@ -6,3 +6,4 @@ azure:
     - appId: "{{ .Env.AZURE_CLIENT_ID }}"
     - directoryId: "{{ .Env.AZURE_TENANT_ID }}"
     - key: "{{ .Env.AZURE_KEY }}"
+    - skipDeployment: "{{ .Env.SKIP_AZURE }}"
