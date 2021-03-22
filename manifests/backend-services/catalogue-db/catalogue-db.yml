@@ -127,6 +127,8 @@ spec:
           name: mysql
           protocol: TCP
         resources: {}
+        securityContext:
+          privileged: true
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
