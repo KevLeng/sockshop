@@ -134,15 +134,11 @@ spec:
           name: mysql
           protocol: TCP
         resources: {}
-        securityContext:
-          privileged: true
-          runAsUser: 0
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
       terminationGracePeriodSeconds: 30
 status: {}
 ---
