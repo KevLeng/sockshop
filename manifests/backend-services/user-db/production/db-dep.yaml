@@ -39,7 +39,6 @@ spec:
   template:
     metadata:
       annotations:
-        dynatrace/instrument: "false"
         pipeline.build: 2.0.2.1234
         pipeline.project: sockshop
         pipeline.stage: prod-stable
