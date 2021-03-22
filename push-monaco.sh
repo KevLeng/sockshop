@@ -1,13 +1,13 @@
 #!/bin/bash
 # This script will push the  Monitoring as Code config
 
-DT_TENANT=${DT_TENANT:-none}
-DT_API_TOKEN=${DT_API_TOKEN:-none}
-AZURE_CLIENT_ID=${AZURE_CLIENT_ID:-none}
-AZURE_TENANT_ID=${AZURE_TENANT_ID:-none}
-AZURE_KEY=${AZURE_KEY:-none}
+export DT_TENANT=${DT_TENANT:-none}
+export DT_API_TOKEN=${DT_API_TOKEN:-none}
+export AZURE_CLIENT_ID=${AZURE_CLIENT_ID:-none}
+export AZURE_TENANT_ID=${AZURE_TENANT_ID:-none}
+export AZURE_KEY=${AZURE_KEY:-none}
 
-SKIP_AZURE=${SKIP_AZURE:-true}
+export SKIP_AZURE=${SKIP_AZURE:-true}
 
 
 
