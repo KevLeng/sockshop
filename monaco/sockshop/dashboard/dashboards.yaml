@@ -1,5 +1,10 @@
 config:
     - highlevel_overview : "highlevel-dashboard.json"
+    - prometheus-environment-overview-dashboard : "prometheus-environment-overview-dashboard.json"
 
 highlevel_overview:
     - name: "Environment Overview Dashboard"
+
+prometheus-environment-overview-dashboard:
+    - name: "Prometheus - Environment Overview Dashboard"
+    - skipDeployment: "{{ .Env.SKIP_PROMETHEUS }}"

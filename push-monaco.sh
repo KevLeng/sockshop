@@ -10,6 +10,7 @@ export AZURE_KEY=${AZURE_KEY:-none}
 export SKIP_AZURE=${SKIP_AZURE:-true}
 
 
+export SKIP_PROMETHEUS=${SKIP_PROMETHEUS:-false}
 
 
 if [[ "$DT_TENANT" == "none" ]]; then

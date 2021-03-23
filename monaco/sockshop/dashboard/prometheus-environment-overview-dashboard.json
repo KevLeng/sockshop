@@ -1,0 +1,752 @@
+{
+    "dashboardMetadata": {
+      "name": "{{ .name }}",
+      "shared": true,
+      "owner": "kevin.leng@dynatrace.com",
+      "sharingDetails": {
+        "linkShared": true,
+        "published": false
+      }
+    },
+    "tiles": [
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 608,
+          "width": 152,
+          "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Hosts](#newhosts)"
+      },
+      {
+        "name": "Host health",
+        "tileType": "HOSTS",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 608,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+      },
+      {
+        "name": "Application health",
+        "tileType": "APPLICATIONS",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 0,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+      },
+      {
+        "name": "Service health",
+        "tileType": "SERVICES",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 304,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+      },
+      {
+        "name": "Database health",
+        "tileType": "DATABASES_OVERVIEW",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 456,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+      },
+      {
+        "name": "Synthetic monitor health",
+        "tileType": "SYNTHETIC_TESTS",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 152,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "chartVisible": true
+      },
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 456,
+          "width": 152,
+          "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Databases](#newdatabases)"
+      },
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 304,
+          "width": 152,
+          "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Services](#newservices)"
+      },
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 152,
+          "width": 152,
+          "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Synthetics](#monitors)"
+      },
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 0,
+          "width": 152,
+          "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "[Applications](#uemapplications)"
+      },
+      {
+        "name": "Problems",
+        "tileType": "OPEN_PROBLEMS",
+        "configured": true,
+        "bounds": {
+          "top": 190,
+          "left": 608,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {}
+      },
+      {
+        "name": "Smartscape",
+        "tileType": "PURE_MODEL",
+        "configured": true,
+        "bounds": {
+          "top": 190,
+          "left": 304,
+          "width": 304,
+          "height": 152
+        },
+        "tileFilter": {}
+      },
+      {
+        "name": "Response Health",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 342,
+          "left": 798,
+          "width": 418,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "B",
+            "metric": "gauge_response_health",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"gauge_response_health\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "LINE"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Heap Allocation",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 342,
+          "left": 1216,
+          "width": 722,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "go_memstats_heap_alloc_bytes",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"go_memstats_heap_alloc_bytes\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": []
+        }
+      },
+      {
+        "name": "Committed Heap",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 608,
+          "left": 1216,
+          "width": 342,
+          "height": 152
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "heap_committed",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "foldTransformation": "LAST_VALUE",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "TOP_LIST",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "columnId": "heap_committed:fold:splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(100)",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "COLUMN"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Eventloop lag",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 1520,
+          "width": 418,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "nodejs_eventloop_lag_seconds",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"nodejs_eventloop_lag_seconds\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "seriesType": "LINE"
+          },
+          "rules": []
+        }
+      },
+      {
+        "name": "Node Heap Used",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 1064,
+          "width": 456,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "nodejs_heap_size_used_bytes",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"nodejs_heap_size_used_bytes\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "AREA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Process Open fds",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 646,
+          "left": 0,
+          "width": 798,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "process_open_fds",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"process_open_fds\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "seriesType": "LINE"
+          },
+          "rules": []
+        }
+      },
+      {
+        "name": "Process Resident Memory",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 380,
+          "left": 0,
+          "width": 798,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "process_resident_memory_bytes",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"process_resident_memory_bytes\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "seriesType": "LINE"
+          },
+          "rules": []
+        }
+      },
+      {
+        "name": "System Load (average)",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 608,
+          "left": 798,
+          "width": 418,
+          "height": 304
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "systemload_average",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"systemload_average\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "AREA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Memory Free",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 760,
+          "left": 1216,
+          "width": 342,
+          "height": 152
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "mem_free",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "metricSelector": "\"mem_free\":splitBy(\"dt.entity.cloud_application\"):avg:auto:sort(value(avg,descending)):limit(20)",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "GRAPH_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "AREA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "NodeJS Active Requests",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 38,
+          "left": 798,
+          "width": 266,
+          "height": 266
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "nodejs_active_requests_total",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "foldTransformation": "LAST_VALUE",
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "SINGLE_VALUE",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE",
+            "hasTrendline": true
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "LINE"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Current Threads",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+          "top": 608,
+          "left": 1558,
+          "width": 380,
+          "height": 304
+        },
+        "tileFilter": {},
+        "customName": "Data explorer results",
+        "queries": [
+          {
+            "id": "A",
+            "metric": "jvm_threads_current",
+            "spaceAggregation": "AVG",
+            "timeAggregation": "DEFAULT",
+            "splitBy": [
+              "dt.entity.cloud_application"
+            ],
+            "enabled": true
+          }
+        ],
+        "visualConfig": {
+          "type": "PIE_CHART",
+          "global": {
+            "theme": "DEFAULT",
+            "threshold": {
+              "axisTarget": "LEFT",
+              "rules": [
+                {
+                  "color": "#7dc540"
+                },
+                {
+                  "color": "#f5d30f"
+                },
+                {
+                  "color": "#dc172a"
+                }
+              ]
+            },
+            "seriesType": "LINE"
+          },
+          "rules": [
+            {
+              "matcher": "A:",
+              "properties": {
+                "seriesType": "LINE"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Catalogue & User",
+        "tileType": "HEADER",
+        "configured": true,
+        "bounds": {
+          "top": 304,
+          "left": 798,
+          "width": 1140,
+          "height": 38
+        },
+        "tileFilter": {}
+      },
+      {
+        "name": "Frontend",
+        "tileType": "HEADER",
+        "configured": true,
+        "bounds": {
+          "top": 0,
+          "left": 798,
+          "width": 1140,
+          "height": 38
+        },
+        "tileFilter": {}
+      },
+      {
+        "name": "All Applications",
+        "tileType": "HEADER",
+        "configured": true,
+        "bounds": {
+          "top": 342,
+          "left": 0,
+          "width": 798,
+          "height": 38
+        },
+        "tileFilter": {}
+      },
+      {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+          "top": 190,
+          "left": 0,
+          "width": 152,
+          "height": 152
+        },
+        "tileFilter": {},
+        "markdown": "[SLO](/ui/slo)\n\n[Kubernetes](/ui/kubernetes)\n\n[AWS](#aswes)\n\n[Azure](#Azures)"
+      }
+    ]
+  }
