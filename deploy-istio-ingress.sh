@@ -5,10 +5,10 @@
 
 PUBLIC_IP=$(curl -s ifconfig.me)
 PUBLIC_IP_AS_DOM=$(echo $PUBLIC_IP | sed 's~\.~-~g')
-NIP_DDOMAIN="${PUBLIC_IP_AS_DOM}.nip.io"
+NIP_DOMAIN="${PUBLIC_IP_AS_DOM}.nip.io"
 
-export DOMAIN=${DOMAIN:-$NIP_DDOMAIN}
-
+export DOMAIN=${DOMAIN:-$NIP_DOMAIN}
+export INGRESSCLASS=${INGRESSCLASS:-"istio"}
 echo "Deploying istio ingress for sockshop"
 echo "Using Domain: $DOMAIN"
 
@@ -20,7 +20,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: istio
+    kubernetes.io/ingress.class: $INGRESSCLASS
   name: $SERVICE
   namespace: $ENV
 spec:
