@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script will install Monitoring as Code
 
-monaco_version="v1.4.0"
+monaco_version="v1.5.3"
 
 
 echo "Download Monaco & make executable"
