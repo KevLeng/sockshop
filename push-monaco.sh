@@ -43,6 +43,31 @@ export dev_carts_ip=$(kubectl describe svc carts -n dev | grep "LoadBalancer Ing
 export production_frontend_ip=$(kubectl describe svc front-end -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 export production_carts_ip=$(kubectl describe svc carts -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 
+if [[ $dev_frontend_ip == "" ]]; then
+  echo "dev_frontend_ip is not found trying host from ingress"
+  export dev_frontend_ip=$(kubectl get ing front-end -n dev -o jsonpath='{.spec.rules[0].host}')
+fi
+
+if [[ $dev_carts_ip == "" ]]; then
+  echo "dev_carts_ip is not found trying host from ingress"
+  export dev_carts_ip=$(kubectl get ing carts -n dev -o jsonpath='{.spec.rules[0].host}')
+fi
+
+if [[ $production_frontend_ip == "" ]]; then
+  echo "production_frontend_ip is not found trying host from ingress"
+  export production_frontend_ip=$(kubectl get ing front-end -n production -o jsonpath='{.spec.rules[0].host}')
+fi
+
+if [[ $production_carts_ip == "" ]]; then
+  echo "production_carts_ip is not found trying host from ingress"
+  export production_carts_ip=$(kubectl get ing carts -n production -o jsonpath='{.spec.rules[0].host}')
+fi
+
+echo "dev front-end: $dev_frontend_ip"
+echo "dev carts: $dev_carts_ip"
+echo "production front-end: $production_frontend_ip"
+echo "production carts: $production_carts_ip"
+
 echo "Calling Monaco with sockshop config..."
 ./monaco_cli -e=monaco/sockshop-environment.yaml -p=sockshop monaco
 
