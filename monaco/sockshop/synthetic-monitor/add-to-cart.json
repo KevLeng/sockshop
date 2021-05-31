@@ -18,7 +18,7 @@
         {
           "type": "navigate",
           "description": "Loading of HomePage",
-          "url": "http://{{ .domain }}:8080/",
+          "url": "http://{{ .domain }}:{{ .port }}/",
           "wait": {
             "waitFor": "page_complete"
           }

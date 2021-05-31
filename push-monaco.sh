@@ -43,6 +43,9 @@ export dev_carts_ip=$(kubectl describe svc carts -n dev | grep "LoadBalancer Ing
 export production_frontend_ip=$(kubectl describe svc front-end -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 export production_carts_ip=$(kubectl describe svc carts -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 
+export production_frontend_port="8080"
+export production_carts_port="80"
+
 if [[ $dev_frontend_ip == "" ]]; then
   echo "dev_frontend_ip is not found trying host from ingress"
   export dev_frontend_ip=$(kubectl get ing front-end -n dev -o jsonpath='{.spec.rules[0].host}')
@@ -56,6 +59,7 @@ fi
 if [[ $production_frontend_ip == "" ]]; then
   echo "production_frontend_ip is not found trying host from ingress"
   export production_frontend_ip=$(kubectl get ing front-end -n production -o jsonpath='{.spec.rules[0].host}')
+  export production_frontend_port="80"
 fi
 
 if [[ $production_carts_ip == "" ]]; then

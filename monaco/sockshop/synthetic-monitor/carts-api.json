@@ -9,7 +9,7 @@
       "requests": [
         {
           "description": "Cart API",
-          "url": "http://{{ .domain }}/",
+          "url": "http://{{ .domain }}:{{ .port }}/",
           "method": "GET",
           "validation": {
             "rules": [
