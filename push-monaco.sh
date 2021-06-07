@@ -12,6 +12,7 @@ export SKIP_AZURE=${SKIP_AZURE:-true}
 
 export SKIP_PROMETHEUS=${SKIP_PROMETHEUS:-false}
 
+export DEFAULT_GEOS=${DEFAULT_GEOS:-true}
 
 if [[ "$DT_TENANT" == "none" ]]; then
     echo "You have to set DT_TENANT to your Tenant URL, e.g: abc12345.dynatrace.live.com or yourdynatracemanaged.com/e/abcde-123123-asdfa-1231231"
@@ -33,6 +34,17 @@ if [[ "$SKIP_AZURE" == "false" ]]; then
     if [[ "$AZURE_KEY" == "none" ]]; then
         echo "You have to set AZURE_KEY to the client secret value for the Azure service principal. See help for more details: https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/"
         exit 1
+    fi
+fi
+
+export synth_geo_location_id_1=${synth_geo_location_id_1:-"GEOLOCATION-8888B6EC387C46E6"}
+export synth_geo_location_id_2=${synth_geo_location_id_2:-"GEOLOCATION-C196364332B5D8E2"}
+
+if [[ "$DT_TENANT" == *"sprint"* ]]; then
+    if [[ "$DEFAULT_GEOS" == "true" ]]; then
+        echo "Sprint environment, using sprint geo location ids"
+        export synth_geo_location_id_1="GEOLOCATION-0DF9A0E1095A5A62" #Portland
+        export synth_geo_location_id_2="GEOLOCATION-E01B833216FC3598" #Hong Kong
     fi
 fi
 
