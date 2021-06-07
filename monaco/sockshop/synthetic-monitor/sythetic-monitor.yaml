@@ -8,21 +8,19 @@ add_to_cart:
     - domain: "{{ .Env.production_frontend_ip }}"
     - environment: "Production"
     - port: "{{ .Env.production_frontend_port }}"
-    - synth-geo-location-1: "{{ .Env.synth_geo_location_id_1 }}"
-    - synth-geo-location-2: "{{ .Env.synth_geo_location_id_2 }}"
+    - synth_geo_location_1: "{{ .Env.synth_geo_location_id_1 }}"
+    - synth_geo_location_2: "{{ .Env.synth_geo_location_id_2 }}"
 
 homepage:
     - name: "Homepage (Single Page)"
     - domain: "{{ .Env.production_frontend_ip }}"
     - environment: "Production"
     - port: "{{ .Env.production_frontend_port }}"
-    - synth-geo-location-1: "{{ .Env.synth_geo_location_id_1 }}"
-    - synth-geo-location-2: "{{ .Env.synth_geo_location_id_2 }}"
+    - synth_geo_location_2: "{{ .Env.synth_geo_location_id_2 }}"
 
 carts-api:
     - name: "Carts API Check"
     - domain: "{{ .Env.production_carts_ip }}"
     - environment: "Production"
     - port: "{{ .Env.production_carts_port }}"
-    - synth-geo-location-1: "{{ .Env.synth_geo_location_id_1 }}"
-    - synth-geo-location-2: "{{ .Env.synth_geo_location_id_2 }}"
+    - synth_geo_location_1: "{{ .Env.synth_geo_location_id_1 }}"

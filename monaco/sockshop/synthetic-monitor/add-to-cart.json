@@ -114,8 +114,8 @@
       ]
     },
     "locations": [
-      "{{ .synth-geo-location-1 }}",
-      "{{ .synth-geo-location-2 }}"
+      "{{ .synth_geo_location_1 }}",
+      "{{ .synth_geo_location_2 }}"
     ],
     "anomalyDetection": {
       "outageHandling": {

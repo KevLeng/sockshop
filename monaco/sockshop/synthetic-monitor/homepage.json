@@ -26,7 +26,7 @@
       ]
     },
     "locations": [
-      "{{ .synth-geo-location-2 }}"
+      "{{ .synth_geo_location_2 }}"
     ],
     "anomalyDetection": {
       "outageHandling": {
