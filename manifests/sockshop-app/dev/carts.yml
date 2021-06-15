@@ -2,28 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
-    app: queue-master
+    app: carts
     product: sockshop
     release: stable
     stage: dev
-    tier: messaging
-    version: "1.0"
-  name: queue-master
+    tier: business
+    version: "2.3"
+  name: carts
   namespace: dev
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
-      app: queue-master
+      app: carts
       product: sockshop
       release: stable
       stage: dev
-      tier: messaging
-      version: "1.0"
+      tier: business
+      version: "2.3"
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -32,53 +29,58 @@ spec:
   template:
     metadata:
       annotations:
-        pipeline.build: 1.0.1.0253
+        pipeline.build: 2.3.0.2981
         pipeline.project: sockshop
         pipeline.stage: dev
         sidecar.istio.io/inject: "false"
-        support.channel: '#support-sockshop-middleware'
-        support.contact: jimmy.page@sockshop.com
-      creationTimestamp: null
+        support.channel: '#support-sockshop-services'
+        support.contact: john.doe@sockshop.com
       labels:
-        app: queue-master
+        app: carts
         product: sockshop
         release: stable
         stage: dev
-        tier: messaging
-        version: "1.0"
+        tier: business
+        version: "2.3"
     spec:
       containers:
       - env:
         - name: JAVA_OPTS
           value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC
             -Djava.security.egd=file:/dev/urandom
-        image: dynatracesockshop/queue-master:0.5.0
+        image: dynatracesockshop/carts:0.5.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
           httpGet:
-            path: /health
+            path: /carts/1/items/health
             port: 8080
             scheme: HTTP
-          initialDelaySeconds: 120
+          initialDelaySeconds: 240
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 15
-        name: queue-master
+        name: carts
         ports:
         - containerPort: 8080
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
-            path: /health
+            path: /carts/1/items/health
             port: 8080
             scheme: HTTP
-          initialDelaySeconds: 120
+          initialDelaySeconds: 240
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 15
-        resources: {}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2Gi
+          requests:
+            cpu: 400m
+            memory: 2Gi
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -100,9 +102,9 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  name: queue-master
+  name: carts
   labels:
-    app: queue-master
+    app: carts
   namespace: dev
 spec:
   ports:
@@ -110,4 +112,5 @@ spec:
     port: 80
     targetPort: 8080
   selector:
-    app: queue-master
+    app: carts
+  type: LoadBalancer

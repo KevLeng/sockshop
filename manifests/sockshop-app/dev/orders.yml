@@ -2,28 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
-    app: user
+    app: orders
     product: sockshop
     release: stable
     stage: dev
     tier: business
-    version: "1.5"
-  name: user
+    version: "1.1"
+  name: orders
   namespace: dev
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
-      app: user
+      app: orders
       product: sockshop
       release: stable
       stage: dev
       tier: business
-      version: "1.5"
+      version: "1.1"
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -32,23 +29,26 @@ spec:
   template:
     metadata:
       annotations:
-        pipeline.build: 1.5.0.0073
+        pipeline.build: 1.1.0.1578
         pipeline.project: sockshop
         pipeline.stage: dev
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-services'
-        support.contact: tony.stark@sockshop.com
-      creationTimestamp: null
+        support.contact: john.doe@sockshop.com
       labels:
-        app: user
+        app: orders
         product: sockshop
         release: stable
         stage: dev
         tier: business
-        version: "1.5"
+        version: "1.1"
     spec:
       containers:
-      - image: dynatracesockshop/user:0.5.0
+      - env:
+        - name: JAVA_OPTS
+          value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC
+            -Djava.security.egd=file:/dev/urandom
+        image: dynatracesockshop/orders:0.5.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -56,11 +56,11 @@ spec:
             path: /health
             port: 8080
             scheme: HTTP
-          initialDelaySeconds: 120
+          initialDelaySeconds: 240
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        name: user
+        name: orders
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -70,6 +70,7 @@ spec:
             path: /health
             port: 8080
             scheme: HTTP
+          initialDelaySeconds: 240
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
@@ -95,9 +96,9 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  name: user
+  name: orders
   labels:
-    app: user
+    app: orders
   namespace: dev
 spec:
   ports:
@@ -105,4 +106,4 @@ spec:
     port: 80
     targetPort: 8080
   selector:
-    app: user
+    app: orders

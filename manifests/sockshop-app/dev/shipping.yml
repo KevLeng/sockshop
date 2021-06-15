@@ -2,7 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: shipping
     product: sockshop
@@ -13,9 +12,7 @@ metadata:
   name: shipping
   namespace: dev
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       app: shipping
@@ -38,7 +35,6 @@ spec:
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-services'
         support.contact: john.doe@sockshop.com
-      creationTimestamp: null
       labels:
         app: shipping
         product: sockshop
