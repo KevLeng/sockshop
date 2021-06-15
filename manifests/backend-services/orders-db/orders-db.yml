@@ -15,7 +15,6 @@ status: {}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     name: orders-db
     product: sockshop
@@ -25,9 +24,7 @@ metadata:
   name: orders-db
   namespace: dev
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       name: orders-db
@@ -46,7 +43,6 @@ spec:
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
-      creationTimestamp: null
       labels:
         name: orders-db
         product: sockshop
@@ -116,7 +112,6 @@ status: {}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     name: orders-db
     product: sockshop
@@ -147,7 +142,6 @@ spec:
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
-      creationTimestamp: null
       labels:
         name: orders-db
         product: sockshop

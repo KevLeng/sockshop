@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     name: rabbitmq
     product: sockshop
@@ -11,9 +10,7 @@ metadata:
   name: rabbitmq
   namespace: production
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       name: rabbitmq
@@ -36,7 +33,6 @@ spec:
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-middleware'
         support.contact: jimmy.page@sockshop.com
-      creationTimestamp: null
       labels:
         name: rabbitmq
         product: sockshop
