@@ -4,7 +4,9 @@ config:
 
 highlevel_overview:
     - name: "Environment Overview Dashboard"
+    - owner: "{{ .Env.DT_DASHBOARD_OWNER }}"
 
 prometheus-environment-overview-dashboard:
     - name: "Prometheus - Environment Overview Dashboard"
     - skipDeployment: "{{ .Env.SKIP_PROMETHEUS }}"
+    - owner: "{{ .Env.DT_DASHBOARD_OWNER }}"

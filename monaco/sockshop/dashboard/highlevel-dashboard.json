@@ -2,7 +2,7 @@
     "dashboardMetadata": {
         "name": "{{ .name }}",
         "shared": true,
-        "owner": "kevin.leng@dynatrace.com",
+        "owner": "{{ .owner }}",
         "sharingDetails": {
             "linkShared": true,
             "published": false
