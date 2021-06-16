@@ -44,6 +44,9 @@ spec:
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
       labels:
+        app.kubernetes.io/name: orders-db
+        app.kubernetes.io/version: "1.1"
+        app.kubernetes.io/part-of: sockshop
         name: orders-db
         product: sockshop
         stage: dev
@@ -121,9 +124,7 @@ metadata:
   name: orders-db
   namespace: production
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       name: orders-db
@@ -143,6 +144,9 @@ spec:
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
       labels:
+        app.kubernetes.io/name: orders-db
+        app.kubernetes.io/version: "1.0"
+        app.kubernetes.io/part-of: sockshop
         name: orders-db
         product: sockshop
         stage: prod

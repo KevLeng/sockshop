@@ -30,6 +30,9 @@ spec:
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
       labels:
+        app.kubernetes.io/name: catalogue-db
+        app.kubernetes.io/version: "2.0"
+        app.kubernetes.io/part-of: sockshop
         name: catalogue-db
         product: sockshop
         stage: dev
@@ -105,6 +108,9 @@ spec:
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
       labels:
+        app.kubernetes.io/name: catalogue-db
+        app.kubernetes.io/version: "1.4"
+        app.kubernetes.io/part-of: sockshop
         name: catalogue-db
         product: sockshop
         stage: prod

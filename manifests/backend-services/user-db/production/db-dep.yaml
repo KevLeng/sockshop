@@ -21,9 +21,7 @@ metadata:
   name: user-db
   namespace: production
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       io.kompose.service: user-db
@@ -44,6 +42,9 @@ spec:
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
       labels:
+        app.kubernetes.io/name: user-db
+        app.kubernetes.io/version: "2.0"
+        app.kubernetes.io/part-of: sockshop
         io.kompose.service: user-db
         name: user-db
         product: sockshop

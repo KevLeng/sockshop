@@ -36,6 +36,9 @@ spec:
         support.channel: '#support-sockshop-middleware'
         support.contact: jimmy.page@sockshop.com
       labels:
+        app.kubernetes.io/name: queue-master
+        app.kubernetes.io/version: "1.0"
+        app.kubernetes.io/part-of: sockshop
         app: queue-master
         product: sockshop
         release: stable

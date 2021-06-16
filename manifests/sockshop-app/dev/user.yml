@@ -36,6 +36,9 @@ spec:
         support.channel: '#support-sockshop-services'
         support.contact: tony.stark@sockshop.com
       labels:
+        app.kubernetes.io/name: user
+        app.kubernetes.io/version: "1.5"
+        app.kubernetes.io/part-of: sockshop
         app: user
         product: sockshop
         release: stable

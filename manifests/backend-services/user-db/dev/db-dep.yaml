@@ -1,15 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: user-db
   name: user-db
   namespace: dev
 spec:
-  progressDeadlineSeconds: 2147483647
   replicas: 1
-  revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
       io.kompose.service: user-db
@@ -29,8 +26,10 @@ spec:
         sidecar.istio.io/inject: "false"
         support.channel: '#support-sockshop-data'
         support.contact: mary.poppins@sockshop.com
-      creationTimestamp: null
       labels:
+        app.kubernetes.io/name: user-db
+        app.kubernetes.io/version: "2.1"
+        app.kubernetes.io/part-of: sockshop
         io.kompose.service: user-db
         name: user-db
         product: sockshop

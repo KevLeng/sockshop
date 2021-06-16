@@ -37,6 +37,9 @@ spec:
         support.channel: '#support-sockshop-frontend'
         support.contact: jane.smith@sockshop.com
       labels:
+        app.kubernetes.io/name: front-end
+        app.kubernetes.io/version: "1.4"
+        app.kubernetes.io/part-of: sockshop
         app: front-end.stable
         product: sockshop
         release: stable

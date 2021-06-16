@@ -36,6 +36,9 @@ spec:
         support.channel: '#support-sockshop-services'
         support.contact: john.doe@sockshop.com
       labels:
+        app.kubernetes.io/name: catalogue
+        app.kubernetes.io/version: "3.1"
+        app.kubernetes.io/part-of: sockshop
         app: catalogue
         product: sockshop
         release: stable
