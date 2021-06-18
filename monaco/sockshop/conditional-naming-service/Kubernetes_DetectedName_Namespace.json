@@ -1,6 +1,6 @@
 {
     "type": "SERVICE",
-    "nameFormat": "{Service:DetectedName}.{ProcessGroup:KubernetesNamespace}",
+    "nameFormat": "{Service:DetectedName}.{ProcessGroup:KubernetesContainerName}.{ProcessGroup:KubernetesNamespace}",
     "displayName": "{{ .name }}",
     "enabled": true,
     "rules": [
