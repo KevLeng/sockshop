@@ -25,6 +25,6 @@ spec:
       - name: backend-load-gen
         image: weaveworksdemos/load-test:0.1.1
         command: ["/bin/sh"]
-        args: ["-c", "curl http://front-end.production.svc.cluster.local:8080/register  -H 'Content-Type: application/json; charset=utf-8' --data '{\"username\":\"user\",\"password\":\"password\"}'; echo ''; while true; do locust --host http://front-end.production.svc.cluster.local:8080 -f /config/locustfile.py --clients 5 --hatch-rate 5 --num-request 100 --no-web; done"]
+        args: ["-c", "curl http://front-end.production.svc.cluster.local:8080/register  -H 'Content-Type: application/json; charset=utf-8' --data '{\"username\":\"user\",\"password\":\"password\"}'; echo ''; while true; do locust --host http://front-end.production.svc.cluster.local:8080 -f /config/locustfile.py --clients 2 --hatch-rate 5 --num-request 50 --no-web; done"]
       nodeSelector:
         beta.kubernetes.io/os: linux
