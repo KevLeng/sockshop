@@ -12,7 +12,7 @@ metadata:
     name: backend-load-gen
   namespace: loadgen
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       name: backend-load-gen
