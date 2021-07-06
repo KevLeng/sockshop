@@ -9,7 +9,7 @@ NIP_DOMAIN="${PUBLIC_IP_AS_DOM}.nip.io"
 
 export DOMAIN=${DOMAIN:-$NIP_DOMAIN}
 export INGRESSCLASS=${INGRESSCLASS:-"istio"}
-echo "Deploying istio ingress for sockshop"
+echo "Deploying $INGRESSCLASS ingress for sockshop"
 echo "Using Domain: $DOMAIN"
 
 createINGFile(){
