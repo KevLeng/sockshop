@@ -9,9 +9,9 @@ NIP_DOMAIN="${PUBLIC_IP_AS_DOM}.nip.io"
 export DOMAIN=${DOMAIN:-$NIP_DOMAIN}
 export INGRESSCLASS=${INGRESSCLASS:-"istio"}
 
-echo "Create namespace"
+echo "Create jenkins namespace"
 kubectl create ns jenkins
-echo "Deply Jenkins using helm"
+echo "Deploy jenkins using helm"
 helm repo add jenkins https://charts.jenkins.io
 helm install jenkins jenkins/jenkins --set controller.jenkinsUrl=http://jenkins.$DOMAIN -f jenkins/values.yaml
 echo "Waiting for jenkins to start"
