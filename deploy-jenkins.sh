@@ -13,6 +13,9 @@ echo "Create jenkins namespace"
 kubectl create ns jenkins
 echo "Deploy jenkins using helm"
 helm repo add jenkins https://charts.jenkins.io
+
+helm env
+
 helm install jenkins jenkins/jenkins --set controller.jenkinsUrl=http://jenkins.$DOMAIN -f jenkins/values.yaml
 echo "Waiting for jenkins to start"
 kubectl wait po -n jenkins -l app.kubernetes.io/name=jenkins --for=condition=ready --timeout=120s
