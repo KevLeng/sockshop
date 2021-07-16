@@ -1,3 +1,4 @@
+namespaceOverride: jenkins
 controller:
   JCasC:
     configScripts:
