@@ -12,7 +12,7 @@ controller:
                value: YOUR_DT_TENANT
              - key: DT_API_TOKEN
                value: YOUR_DT_API_TOKEN
-      pipeline-qualitygates:  |
+      pipeline-monaco:  |
         jobs:
           - script: >
               pipelineJob('sockshop-monaco') {
