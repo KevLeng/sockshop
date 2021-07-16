@@ -1,0 +1,40 @@
+controller:
+  JCasC:
+    configScripts:
+      welcome-message: |
+        jenkins:
+          systemMessage: Welcome to the sockshop CI\CD server.
+          globalNodeProperties:
+          - envVars:
+             env:
+             - key: DT_TENANT
+               value: YOUR_DT_TENANT
+             - key: DT_API_TOKEN
+               value: YOUR_DT_API_TOKEN
+      pipeline-qualitygates:  |
+        jobs:
+          - script: >
+              pipelineJob('sockshop-monaco') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/KevLeng/sockshop.git')
+                        }
+                        branch('*/main')
+                      }
+                    }
+                    scriptPath 'jenkins/monaco.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }
+  additionalPlugins:
+    - http_request:1.9.0
+    - pipeline-utility-steps:2.8.0
+    - blueocean:1.24.7
+    - job-dsl:1.77
+    - workflow-job:2.41
+    - rebuild:1.31
+    - jdk-tool:1.4
