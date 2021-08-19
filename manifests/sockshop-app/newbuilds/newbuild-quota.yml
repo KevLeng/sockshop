@@ -1,0 +1,103 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: carts
+    product: sockshop
+    release: stable
+    stage: prod
+    tier: business
+    version: "2.3"
+  name: carts
+  namespace: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carts
+      product: sockshop
+      release: stable
+      stage: prod
+      tier: business
+      version: "2.3"
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pipeline.build: 2.3.1.3476
+        pipeline.project: sockshop
+        pipeline.stage: prod-stable
+        sidecar.istio.io/inject: "false"
+        support.channel: '#support-sockshop-services'
+        support.contact: john.doe@sockshop.com
+      labels:
+        app.kubernetes.io/name: carts
+        app.kubernetes.io/version: "2.3"
+        app.kubernetes.io/part-of: sockshop
+        app: carts
+        product: sockshop
+        release: stable
+        stage: prod
+        tier: business
+        version: "2.3"
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC
+            -Djava.security.egd=file:/dev/urandom
+        image: dynatracesockshop/carts:0.5.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 2
+          httpGet:
+            path: /carts/1/items/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 240
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 15
+        name: carts
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 2
+          httpGet:
+            path: /carts/1/items/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 240
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 15
+        resources:
+          requests:
+            cpu: 200m
+            memory: 2048Mi
+          limits:
+            cpu: 500m
+            memory: 3072Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: tmp-volume
+status: {}
