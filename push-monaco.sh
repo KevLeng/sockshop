@@ -15,7 +15,8 @@ export AZURE_KEY=${AZURE_KEY:-none}
 
 # Prometheus Variables
 export SKIP_PROMETHEUS=${SKIP_PROMETHEUS:-false}
-
+# Kubernetes Variables
+export SKIP_K8S=${SKIP_K8S:-false}
 
 
 if [[ "$DT_TENANT" == "none" ]]; then
@@ -40,6 +41,35 @@ if [[ "$SKIP_AZURE" == "false" ]]; then
         exit 1
     fi
 fi
+
+
+getK8sConfiguration() {
+
+  CLI="kubectl"
+  export SKIP_CERT_CHECK="true"
+
+  export 8S_ENDPOINT="$("${CLI}" config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
+  if [ -z "$K8S_ENDPOINT" ]; then
+    echo "Error: failed to get kubernetes endpoint!"
+#    exit 1
+  fi
+
+  export CONNECTION_NAME="$(echo "${K8S_ENDPOINT}" | awk -F[/:] '{print $4}')"
+
+  export K8S_SECRET_NAME="$(for token in $("${CLI}" get sa dynatrace-kubernetes-monitoring -o jsonpath='{.secrets[*].name}' -n dynatrace); do echo "$token"; done | grep token)"
+  if [ -z "$K8S_SECRET_NAME" ]; then
+    echo "Error: failed to get kubernetes-monitoring secret!"
+#    exit 1
+  fi
+
+  export K8S_BEARER="$("${CLI}" get secret "${K8S_SECRET_NAME}" -o jsonpath='{.data.token}' -n dynatrace | base64 --decode)"
+  if [ -z "$K8S_BEARER" ]; then
+    echo "Error: failed to get bearer token!"
+#    exit 1
+  fi
+
+}
+
 
 export synth_geo_location_id_1=${synth_geo_location_id_1:-"GEOLOCATION-8888B6EC387C46E6"}
 export synth_geo_location_id_2=${synth_geo_location_id_2:-"GEOLOCATION-C196364332B5D8E2"}
