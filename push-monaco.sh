@@ -114,6 +114,8 @@ if [[ $production_carts_ip == "" ]]; then
   export production_carts_ip=$(kubectl get ing carts -n production -o jsonpath='{.spec.rules[0].host}')
 fi
 
+getK8sConfiguration
+
 echo "**************************************************"
 echo "Using the following:"
 echo "dev front-end: $dev_frontend_ip"
