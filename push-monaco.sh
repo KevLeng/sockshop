@@ -48,7 +48,7 @@ getK8sConfiguration() {
   CLI="kubectl"
   export SKIP_CERT_CHECK="true"
 
-  export 8S_ENDPOINT="$("${CLI}" config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
+  export K8S_ENDPOINT="$("${CLI}" config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
   if [ -z "$K8S_ENDPOINT" ]; then
     echo "Error: failed to get kubernetes endpoint!"
 #    exit 1
