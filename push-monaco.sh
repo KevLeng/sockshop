@@ -16,7 +16,7 @@ export AZURE_KEY=${AZURE_KEY:-none}
 # Prometheus Variables
 export SKIP_PROMETHEUS=${SKIP_PROMETHEUS:-false}
 # Kubernetes Variables
-export SKIP_K8S=${SKIP_K8S:-false}
+export SKIP_K8S=${SKIP_K8S:-true}
 
 
 if [[ "$DT_TENANT" == "none" ]]; then
